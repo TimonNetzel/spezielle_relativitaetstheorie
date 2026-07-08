@@ -1,0 +1,453 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Arbeitsblatt: Rechnen mit Zeitdilatation und Längenkontraktion</title>
+
+  <!-- MathJax: rendert LaTeX-Formeln in \( ... \) und \[ ... \] -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+  <style>
+    :root {
+      --ink: #1f2937;
+      --muted: #4b5563;
+      --line: #d1d5db;
+      --soft: #f3f4f6;
+      --soft2: #eef2ff;
+      --accent: #243b73;
+      --warn: #fff7ed;
+      --ok: #ecfdf5;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.45;
+      background: #ffffff;
+    }
+    .page {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 28px 34px 44px;
+    }
+    header {
+      border: 2px solid var(--accent);
+      border-radius: 14px;
+      padding: 18px 20px;
+      margin-bottom: 20px;
+      background: linear-gradient(180deg, #ffffff, #f8fafc);
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 1.9rem;
+      color: var(--accent);
+    }
+    h2 {
+      margin: 24px 0 10px;
+      padding-bottom: 4px;
+      border-bottom: 2px solid var(--line);
+      color: var(--accent);
+      font-size: 1.35rem;
+    }
+    h3 {
+      margin: 16px 0 8px;
+      color: var(--ink);
+      font-size: 1.05rem;
+    }
+    .meta {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+      font-size: .95rem;
+    }
+    .field {
+      border-bottom: 1px solid var(--ink);
+      min-height: 28px;
+      padding: 3px 0;
+    }
+    .inline-field {
+      display: inline-block;
+      width: 120px;
+      border-bottom: 1px solid var(--ink);
+      min-height: 1.3em;
+      vertical-align: baseline;
+    }
+    .box {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 14px 16px;
+      background: var(--soft);
+      margin: 12px 0;
+    }
+    .mission {
+      border-left: 6px solid var(--accent);
+      background: var(--soft2);
+    }
+    .unit {
+      background: var(--warn);
+    }
+    .check {
+      background: var(--ok);
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 10px 0 14px;
+      font-size: .95rem;
+    }
+    th, td {
+      border: 1px solid var(--line);
+      padding: 8px 10px;
+      vertical-align: top;
+    }
+    th {
+      background: #e5e7eb;
+      text-align: left;
+    }
+    .formula {
+      text-align: center;
+      font-weight: 700;
+      padding: 10px;
+      background: #ffffff;
+      border-radius: 10px;
+      border: 1px dashed var(--accent);
+      margin: 8px 0;
+      overflow-x: auto;
+    }
+    .task {
+      border: 1.5px solid var(--line);
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 14px 0;
+      page-break-inside: avoid;
+    }
+    .task h3 {
+      margin-top: 0;
+      color: var(--accent);
+    }
+    .level {
+      display: inline-block;
+      font-size: .8rem;
+      font-weight: 700;
+      border-radius: 999px;
+      padding: 2px 8px;
+      background: #e0e7ff;
+      margin-left: 6px;
+      color: #1e3a8a;
+    }
+    .write {
+      min-height: 36px;
+      border-bottom: 1px solid var(--line);
+      margin: 6px 0;
+    }
+    .write.tall { min-height: 74px; }
+    details {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 8px 10px;
+      margin-top: 10px;
+      background: #ffffff;
+    }
+    details summary {
+      cursor: pointer;
+      font-weight: 700;
+      color: var(--accent);
+    }
+    .small {
+      color: var(--muted);
+      font-size: .88rem;
+    }
+    .steps li { margin-bottom: 5px; }
+    footer {
+      margin-top: 28px;
+      padding-top: 14px;
+      border-top: 1px solid var(--line);
+      font-size: .82rem;
+      color: var(--muted);
+    }
+    .latex-note {
+      font-size: .82rem;
+      color: var(--muted);
+      margin-top: 8px;
+    }
+    @media print {
+      body { font-size: 10.5pt; }
+      .page { max-width: none; padding: 14mm; }
+      header, .task, .box { break-inside: avoid; }
+      details:not([open]) > *:not(summary) { display: none; }
+      a { color: inherit; text-decoration: none; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <h1>Arbeitsblatt: Rechnen mit Raumschiffen in der speziellen Relativitätstheorie</h1>
+      <p><strong>Ziel:</strong> Du übst einfache Rechnungen zu Zeitdilatation und Längenkontraktion. Alle Aufgaben spielen im Raumschiff-Kontext.</p>
+      <p class="latex-note">Hinweis: Die Formeln sind als LaTeX notiert und werden im Browser mit MathJax dargestellt.</p>
+      <div class="meta">
+        <div>Name: <div class="field"></div></div>
+        <div>Kurs: <div class="field"></div></div>
+        <div>Datum: <div class="field"></div></div>
+      </div>
+    </header>
+
+    <section class="box mission">
+      <h2>Mission</h2>
+      <p>Ein Raumschiff fliegt mit sehr hoher Geschwindigkeit an einer Raumstation vorbei. Jetzt vergleichen wir, was die Menschen <strong>im Raumschiff</strong> und was die Menschen <strong>an der Raumstation</strong> messen.</p>
+      <p><strong>Merksatz:</strong> Je näher die Geschwindigkeit an die Lichtgeschwindigkeit kommt, desto größer werden die Effekte.</p>
+    </section>
+
+    <section>
+      <h2>1. Größen, Einheiten und Formeln</h2>
+      <table>
+        <thead>
+          <tr><th>Zeichen</th><th>Bedeutung</th><th>Typische Einheit</th><th>Merksatz</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>\(c\)</td><td>Lichtgeschwindigkeit</td><td>\(\mathrm{km/s}\) oder \(\mathrm{m/s}\)</td><td>Im Vakuum etwa \(300\,000\,\mathrm{km/s}\).</td></tr>
+          <tr><td>\(v\)</td><td>Geschwindigkeit des Raumschiffs relativ zur Station</td><td>\(\mathrm{km/s}\), \(\mathrm{m/s}\) oder als Anteil von \(c\)</td><td>Zum Beispiel: \(v = 0{,}8c\).</td></tr>
+          <tr><td>\(\gamma\) „Gamma“</td><td>Lorentzfaktor</td><td>keine Einheit</td><td>Gibt an, wie stark Zeit und Länge verändert gemessen werden.</td></tr>
+          <tr><td>\(\Delta t_0\)</td><td>Eigenzeit: Zeit im Raumschiff, also dort, wo die Uhr ruht</td><td>\(\mathrm{s}\), \(\mathrm{min}\), \(\mathrm{h}\), Jahre</td><td>Die mitreisende Uhr misst die Eigenzeit.</td></tr>
+          <tr><td>\(\Delta t\)</td><td>gedehnte Zeit aus Sicht der Station</td><td>\(\mathrm{s}\), \(\mathrm{min}\), \(\mathrm{h}\), Jahre</td><td>Von außen erscheint die bewegte Raumschiff-Uhr langsamer.</td></tr>
+          <tr><td>\(L_0\)</td><td>Eigenlänge: Länge des Raumschiffs in seinem eigenen Ruhesystem</td><td>\(\mathrm{m}\) oder \(\mathrm{km}\)</td><td>Die Besatzung misst die Eigenlänge des eigenen Schiffs.</td></tr>
+          <tr><td>\(L\)</td><td>verkürzte Länge aus Sicht der Station</td><td>\(\mathrm{m}\) oder \(\mathrm{km}\)</td><td>Von der Station aus erscheint das bewegte Schiff kürzer.</td></tr>
+        </tbody>
+      </table>
+
+      <div class="grid-2">
+        <div class="box">
+          <h3>Lorentzfaktor</h3>
+          <div class="formula">\[
+            \gamma = \frac{1}{\sqrt{1-\frac{v^2}{c^2}}}
+          \]</div>
+          <p class="small">Wenn \(v\) als Anteil von \(c\) gegeben ist, z. B. \(v = 0{,}8c\), dann gilt \(\frac{v}{c}=0{,}8\).</p>
+        </div>
+        <div class="box">
+          <h3>Zeitdilatation und Längenkontraktion</h3>
+          <div class="formula">\[
+            \Delta t = \gamma \cdot \Delta t_0
+          \]</div>
+          <div class="formula">\[
+            L = \frac{L_0}{\gamma}
+          \]</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="box unit">
+      <h2>2. Einheitenhilfe</h2>
+      <ul>
+        <li><strong>Wichtig:</strong> In einem Bruch müssen \(v\) und \(c\) dieselbe Einheit haben.</li>
+        <li>Wenn \(v = 0{,}8c\) gegeben ist, musst du \(c\) nicht in \(\mathrm{km/s}\) einsetzen. Dann ist \(\frac{v}{c}=0{,}8\).</li>
+        <li>Wenn \(v = 240\,000\,\mathrm{km/s}\) und \(c = 300\,000\,\mathrm{km/s}\) gegeben ist, dann: \(\frac{v}{c}=\frac{240\,000}{300\,000}=0{,}8\).</li>
+        <li>Zeit bleibt in derselben Einheit: Jahre rein → Jahre raus. Sekunden rein → Sekunden raus.</li>
+        <li>Länge bleibt in derselben Einheit: Meter rein → Meter raus. Kilometer rein → Kilometer raus.</li>
+      </ul>
+    </section>
+
+    <section class="box check">
+      <h2>3. Formel- und Umstellhilfe</h2>
+      <table>
+        <thead>
+          <tr><th>Gesucht</th><th>Formel</th><th>So denkst du</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>\(\gamma\)</td><td>\(\displaystyle \gamma=\frac{1}{\sqrt{1-\left(\frac{v}{c}\right)^2}}\)</td><td>Erst \(\frac{v}{c}\), dann quadrieren, dann \(1-\), dann Wurzel, dann \(1\) geteilt durch das Ergebnis.</td></tr>
+          <tr><td>\(\Delta t\)</td><td>\(\Delta t=\gamma\cdot\Delta t_0\)</td><td>Von außen gemessene Zeit ist größer.</td></tr>
+          <tr><td>\(\Delta t_0\)</td><td>\(\displaystyle \Delta t_0=\frac{\Delta t}{\gamma}\)</td><td>Wenn du von der Station-Zeit zurück zur Bordzeit willst, teilst du durch \(\gamma\).</td></tr>
+          <tr><td>\(L\)</td><td>\(\displaystyle L=\frac{L_0}{\gamma}\)</td><td>Bewegte Länge ist kleiner.</td></tr>
+          <tr><td>\(L_0\)</td><td>\(L_0=L\cdot\gamma\)</td><td>Wenn du die Ruhelänge suchst, multiplizierst du mit \(\gamma\).</td></tr>
+          <tr><td>\(v\) aus \(\gamma\)</td><td>\(\displaystyle v=c\cdot\sqrt{1-\frac{1}{\gamma^2}}\)</td><td>Nur für die Zusatzaufgabe.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>4. Rechenübungen</h2>
+
+      <div class="task">
+        <h3>Aufgabe 1: Wie groß ist der Lorentzfaktor? <span class="level">Basis</span></h3>
+        <p>Das Raumschiff <strong>Orion</strong> fliegt mit \(v = 0{,}6c\) an einer Raumstation vorbei.</p>
+        <p><strong>Berechne \(\gamma\).</strong></p>
+        <ol class="steps">
+          <li>\(\frac{v}{c}=\) <span class="inline-field"></span></li>
+          <li>\(\left(\frac{v}{c}\right)^2=\) <span class="inline-field"></span></li>
+          <li>\(1-\left(\frac{v}{c}\right)^2=\) <span class="inline-field"></span></li>
+          <li>\(\sqrt{1-\left(\frac{v}{c}\right)^2}=\) <span class="inline-field"></span></li>
+          <li>\(\gamma=\) <span class="inline-field"></span></li>
+        </ol>
+        <details>
+          <summary>Hilfe</summary>
+          <p>Bei \(v=0{,}6c\) ist \(\frac{v}{c}=0{,}6\). Rechne: \(0{,}6^2=0{,}36\). Danach \(1-0{,}36=0{,}64\). Die Wurzel aus \(0{,}64\) ist \(0{,}8\). Zum Schluss \(\frac{1}{0{,}8}\).</p>
+        </details>
+      </div>
+
+      <div class="task">
+        <h3>Aufgabe 2: Zeit im Raumschiff und Zeit auf der Station <span class="level">Basis</span></h3>
+        <p>Im Raumschiff <strong>Orion</strong> vergehen laut Borduhr \(5\) Jahre. Das Schiff fliegt mit \(v = 0{,}8c\). Für diese Geschwindigkeit gilt ungefähr \(\gamma = 1{,}67\).</p>
+        <p><strong>Wie viel Zeit misst die Raumstation?</strong></p>
+        <p>Gegeben: \(\Delta t_0=\) <span class="inline-field"></span>, \(\gamma=\) <span class="inline-field"></span></p>
+        <p>Gesucht: \(\Delta t=\) <span class="inline-field"></span></p>
+        <p>Rechnung:</p>
+        <div class="write tall"></div>
+        <p>Antwortsatz:</p>
+        <div class="write"></div>
+        <details>
+          <summary>Hilfe</summary>
+          <p>Nutze \(\Delta t=\gamma\cdot\Delta t_0\). Also: \(\Delta t=1{,}67\cdot5\,\text{Jahre}\).</p>
+        </details>
+      </div>
+
+      <div class="task">
+        <h3>Aufgabe 3: Bordzeit gesucht <span class="level">Mittel</span></h3>
+        <p>Die Raumstation beobachtet das Raumschiff <strong>Nova</strong> für \(12\) Jahre. Das Schiff fliegt mit \(v=0{,}6c\). Aus Aufgabe 1 weißt du: \(\gamma=1{,}25\).</p>
+        <p><strong>Wie viel Zeit vergeht auf der Borduhr?</strong></p>
+        <p>Formel auswählen und ggf. umstellen:</p>
+        <div class="write"></div>
+        <p>Rechnung:</p>
+        <div class="write tall"></div>
+        <p>Antwortsatz:</p>
+        <div class="write"></div>
+        <details>
+          <summary>Hilfe</summary>
+          <p>Gesucht ist \(\Delta t_0\). Nutze \(\Delta t_0=\frac{\Delta t}{\gamma}\). Also: \(\frac{12\,\text{Jahre}}{1{,}25}\).</p>
+        </details>
+      </div>
+
+      <div class="task">
+        <h3>Aufgabe 4: Raumschifflänge aus Sicht der Station <span class="level">Basis</span></h3>
+        <p>Das Raumschiff <strong>Vega</strong> ist in seinem eigenen Ruhesystem \(120\,\mathrm{m}\) lang. Es fliegt mit \(v=0{,}8c\). Es gilt \(\gamma=1{,}67\).</p>
+        <p><strong>Welche Länge misst die Raumstation?</strong></p>
+        <p>Gegeben: \(L_0=\) <span class="inline-field"></span>, \(\gamma=\) <span class="inline-field"></span></p>
+        <p>Gesucht: \(L=\) <span class="inline-field"></span></p>
+        <p>Rechnung:</p>
+        <div class="write tall"></div>
+        <p>Antwortsatz:</p>
+        <div class="write"></div>
+        <details>
+          <summary>Hilfe</summary>
+          <p>Nutze \(\displaystyle L=\frac{L_0}{\gamma}\). Also: \(\displaystyle L=\frac{120\,\mathrm{m}}{1{,}67}\). Die Einheit bleibt Meter.</p>
+        </details>
+      </div>
+
+      <div class="task">
+        <h3>Aufgabe 5: Eigenlänge gesucht <span class="level">Mittel</span></h3>
+        <p>Die Raumstation misst beim vorbeifliegenden Raumschiff <strong>Pulsar</strong> eine Länge von \(60\,\mathrm{m}\). Das Schiff fliegt mit \(v=0{,}8c\), also \(\gamma=1{,}67\).</p>
+        <p><strong>Wie lang ist das Raumschiff in seinem eigenen Ruhesystem?</strong></p>
+        <p>Formel auswählen und umstellen:</p>
+        <div class="write"></div>
+        <p>Rechnung:</p>
+        <div class="write tall"></div>
+        <p>Antwortsatz:</p>
+        <div class="write"></div>
+        <details>
+          <summary>Hilfe</summary>
+          <p>Gesucht ist \(L_0\). Nutze \(L_0=L\cdot\gamma\). Also: \(60\,\mathrm{m}\cdot1{,}67\).</p>
+        </details>
+      </div>
+
+      <div class="task">
+        <h3>Aufgabe 6: Geschwindigkeit in \(\mathrm{km/s}\) <span class="level">Mittel</span></h3>
+        <p>Das Raumschiff <strong>Helios</strong> fliegt mit \(240\,000\,\mathrm{km/s}\). Die Lichtgeschwindigkeit ist \(c=300\,000\,\mathrm{km/s}\).</p>
+        <p><strong>Berechne zuerst \(\frac{v}{c}\) und dann \(\gamma\).</strong></p>
+        <p>\(\frac{v}{c}=\) <span class="inline-field"></span></p>
+        <p>\(\gamma\)-Rechnung:</p>
+        <div class="write tall"></div>
+        <p>Antwortsatz:</p>
+        <div class="write"></div>
+        <details>
+          <summary>Hilfe</summary>
+          <p>Beide Geschwindigkeiten stehen in \(\mathrm{km/s}\), also darfst du direkt teilen: \(\frac{240\,000}{300\,000}=0{,}8\). Danach rechnest du wie bei \(v=0{,}8c\).</p>
+        </details>
+      </div>
+
+      <div class="task">
+        <h3>Aufgabe 7: Kombinierte Raumschiff-Mission <span class="level">Mittel+</span></h3>
+        <p>Das Forschungsschiff <strong>Aurora</strong> fliegt mit \(v=0{,}9c\). Dafür gilt ungefähr \(\gamma=2{,}29\). An Bord vergeht eine Forschungszeit von \(2\) Stunden. Das Schiff ist in Ruhe \(180\,\mathrm{m}\) lang.</p>
+        <p><strong>a) Wie viel Zeit misst die Raumstation?</strong></p>
+        <div class="write tall"></div>
+        <p><strong>b) Welche Länge misst die Raumstation?</strong></p>
+        <div class="write tall"></div>
+        <p><strong>c) Erkläre in einem Satz, warum die Zeit größer, aber die Länge kleiner wird.</strong></p>
+        <div class="write tall"></div>
+        <details>
+          <summary>Hilfe</summary>
+          <p>a) \(\Delta t=\gamma\cdot\Delta t_0\). b) \(\displaystyle L=\frac{L_0}{\gamma}\). c) Vergleiche: Zeit wird mit \(\gamma\) multipliziert, Länge wird durch \(\gamma\) geteilt.</p>
+        </details>
+      </div>
+
+      <div class="task">
+        <h3>Aufgabe 8: Zusatzaufgabe für Formel-Profis <span class="level">Knobel</span></h3>
+        <p>Die Raumstation misst für eine Reise des Raumschiffs <strong>Zenit</strong> \(10\) Jahre. An Bord vergehen nur \(6\) Jahre.</p>
+        <p><strong>a) Berechne \(\gamma\).</strong></p>
+        <p>Tipp: \(\displaystyle \gamma=\frac{\Delta t}{\Delta t_0}\)</p>
+        <div class="write tall"></div>
+        <p><strong>b) Berechne, welcher Anteil der Lichtgeschwindigkeit das ist.</strong></p>
+        <p>Tipp: \(\displaystyle v=c\cdot\sqrt{1-\frac{1}{\gamma^2}}\)</p>
+        <div class="write tall"></div>
+        <p><strong>c) Antwortsatz:</strong></p>
+        <div class="write"></div>
+        <details>
+          <summary>Hilfe</summary>
+          <p>a) \(\displaystyle \gamma=\frac{10}{6}\approx1{,}67\). b) Setze \(\gamma=1{,}67\) ein. Das Ergebnis liegt ungefähr bei \(v\approx0{,}8c\).</p>
+        </details>
+      </div>
+    </section>
+
+    <section>
+      <h2>5. Mini-Check: Habe ich die Bedeutung verstanden?</h2>
+      <ol>
+        <li>Welche Uhr misst die Eigenzeit \(\Delta t_0\): die Borduhr oder die Uhr der Raumstation?</li>
+        <div class="write"></div>
+        <li>Welche Länge ist größer: \(L\) oder \(L_0\)? Begründe kurz.</li>
+        <div class="write"></div>
+        <li>Warum hat \(\gamma\) keine Einheit?</li>
+        <div class="write"></div>
+      </ol>
+    </section>
+
+    <section>
+      <h2>6. Lösungskontrolle</h2>
+      <details>
+        <summary>Lösungen einblenden</summary>
+        <ol>
+          <li>\(\gamma=1{,}25\).</li>
+          <li>\(\Delta t=1{,}67\cdot5\,\text{Jahre}=8{,}35\,\text{Jahre}\).</li>
+          <li>\(\Delta t_0=\frac{12\,\text{Jahre}}{1{,}25}=9{,}6\,\text{Jahre}\).</li>
+          <li>\(\displaystyle L=\frac{120\,\mathrm{m}}{1{,}67}\approx71{,}9\,\mathrm{m}\).</li>
+          <li>\(L_0=60\,\mathrm{m}\cdot1{,}67\approx100{,}2\,\mathrm{m}\).</li>
+          <li>\(\frac{v}{c}=0{,}8\); \(\gamma\approx1{,}67\).</li>
+          <li>a) \(\Delta t=2{,}29\cdot2\,\mathrm{h}=4{,}58\,\mathrm{h}\). b) \(\displaystyle L=\frac{180\,\mathrm{m}}{2{,}29}\approx78{,}6\,\mathrm{m}\). c) Von außen wird die bewegte Uhr langsamer gesehen und die Länge in Bewegungsrichtung kürzer gemessen.</li>
+          <li>a) \(\gamma=\frac{10}{6}\approx1{,}67\). b) \(v\approx0{,}8c\).</li>
+        </ol>
+      </details>
+    </section>
+
+    <footer>
+      <p><strong>Fachliche Grundlage:</strong> Verwendet werden die Standardformeln der speziellen Relativitätstheorie für Lorentzfaktor, Zeitdilatation und Längenkontraktion. Die Längenkontraktion gilt nur in Bewegungsrichtung; bewegte Uhren werden aus einem anderen Inertialsystem langsamer gemessen.</p>
+      <p><strong>Technischer Hinweis:</strong> Für die LaTeX-Darstellung wird MathJax geladen. Ohne Internetverbindung bleiben die LaTeX-Ausdrücke als Quellnotation sichtbar.</p>
+    </footer>
+  </main>
+</body>
+</html>
