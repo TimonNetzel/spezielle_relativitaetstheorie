@@ -1,0 +1,855 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mathematik 13.1 – Arbeitsblatt Station 1: Relative Häufigkeit und Wahrscheinlichkeit</title>
+  <style>
+    :root{
+      --bg:#0b1020;
+      --panel:#121a2e;
+      --panel2:#18223a;
+      --card:#111827;
+      --ink:#e8f0ff;
+      --muted:#a7b4ce;
+      --accent:#00d5ff;
+      --accent2:#7c3cff;
+      --good:#5eead4;
+      --warn:#facc15;
+      --bad:#fb7185;
+      --line:rgba(255,255,255,.14);
+      --shadow:0 24px 70px rgba(0,0,0,.35);
+      --radius:22px;
+      --paper:#f8fbff;
+      --paperInk:#101828;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, "Noto Sans", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(0,213,255,.16), transparent 34rem),
+        radial-gradient(circle at 85% 8%, rgba(124,60,255,.22), transparent 30rem),
+        linear-gradient(180deg,#080d1a 0%, var(--bg) 45%, #070b15 100%);
+      color:var(--ink);
+      line-height:1.45;
+    }
+    a{color:#8be9ff}
+    .wrap{width:min(1180px, calc(100% - 32px)); margin:auto}
+    header.hero{padding:44px 0 22px; position:relative; overflow:hidden}
+    .topbar{display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:28px}
+    .brand{display:flex; align-items:center; gap:12px; font-weight:800; letter-spacing:.02em}
+    .brand-mark{
+      width:42px;height:42px;border-radius:14px;
+      background:linear-gradient(135deg,var(--accent),var(--accent2));
+      box-shadow:0 0 38px rgba(0,213,255,.45);
+      display:grid;place-items:center;color:#06101c;font-weight:900;
+    }
+    .pillbar{display:flex; flex-wrap:wrap; gap:8px; margin:18px 0 0}
+    .pill{border:1px solid var(--line); background:rgba(255,255,255,.055); padding:8px 12px; border-radius:999px; color:var(--muted); font-size:.9rem; backdrop-filter:blur(10px)}
+    h1{font-size:clamp(2rem,5vw,4.5rem); line-height:.96; margin:0; letter-spacing:-.06em}
+    h2{font-size:clamp(1.45rem,2.8vw,2.25rem); margin:0 0 14px; letter-spacing:-.03em}
+    h3{margin:0 0 8px; font-size:1.15rem}
+    p{margin:.45rem 0}
+    .lead{font-size:clamp(1.05rem,1.7vw,1.28rem); color:var(--muted); max-width:850px; margin-top:18px}
+    .hero-grid{display:grid; grid-template-columns:1.15fr .85fr; gap:24px; align-items:stretch}
+    .hero-card,.panel{background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.035)); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); backdrop-filter:blur(10px)}
+    .hero-card{padding:26px}
+    .signal{padding:22px; position:relative; min-height:280px; overflow:hidden; display:grid; place-items:center}
+    .signal svg{width:100%; max-width:440px; opacity:.95; filter:drop-shadow(0 18px 36px rgba(0,0,0,.35))}
+    .metric-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-top:18px}
+    .metric{background:rgba(4,10,24,.56); border:1px solid var(--line); border-radius:18px; padding:14px}
+    .metric b{display:block; font-size:1.35rem; color:white}
+    .metric span{color:var(--muted); font-size:.86rem}
+    nav.quick{position:sticky; top:0; z-index:20; backdrop-filter:blur(14px); background:rgba(8,13,26,.74); border-top:1px solid var(--line); border-bottom:1px solid var(--line)}
+    nav.quick .wrap{display:flex; gap:8px; padding:10px 0; overflow:auto; align-items:center}
+    .btn,button{appearance:none; border:1px solid var(--line); color:var(--ink); background:rgba(255,255,255,.065); border-radius:999px; padding:10px 14px; cursor:pointer; font-weight:700; transition:.2s transform,.2s background,.2s border-color; text-decoration:none; display:inline-flex; align-items:center; gap:8px; white-space:nowrap; font:inherit}
+    .btn:hover,button:hover{transform:translateY(-1px); border-color:rgba(0,213,255,.55); background:rgba(0,213,255,.12)}
+    .btn.primary,button.primary{background:linear-gradient(135deg,rgba(0,213,255,.92),rgba(124,60,255,.9)); color:#06101c; border:none}
+    button[disabled]{opacity:.55; cursor:not-allowed; transform:none}
+    section{padding:38px 0}
+    .section-head{display:flex; justify-content:space-between; gap:16px; align-items:end; margin-bottom:18px}
+    .section-head p{color:var(--muted); max-width:780px}
+    .board{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px}
+    .board.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .dark-card{background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.04)); border:1px solid var(--line); border-radius:22px; padding:18px; box-shadow:var(--shadow)}
+    .dark-card h3{color:white}
+    .dark-card p,.dark-card li{color:var(--muted)}
+    .paper{background:linear-gradient(180deg,#fbfdff,#edf4ff); color:var(--paperInk); border-radius:26px; box-shadow:0 28px 90px rgba(0,0,0,.36); border:1px solid rgba(255,255,255,.7); padding:22px; position:relative; overflow:hidden}
+    .paper::before{content:""; position:absolute; inset:0 0 auto 0; height:8px; background:linear-gradient(90deg,var(--accent),var(--accent2))}
+    .paper h2,.paper h3{color:#0f172a}
+    .paper .sub{color:#475569; font-size:.94rem}
+    .timeline{display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:12px; margin-top:14px}
+    .step{background:white; border:1px solid #d7e2f2; border-radius:18px; padding:14px; min-height:150px; box-shadow:0 12px 24px rgba(15,23,42,.08); position:relative}
+    .step b{display:block; color:#0f172a; font-size:1.03rem; margin-bottom:4px}
+    .step small{display:inline-flex; color:#042f3a; background:#d8f8ff; border:1px solid #a8eefc; border-radius:999px; padding:4px 8px; font-weight:900; margin-bottom:9px}
+    .step p{color:#475569; font-size:.92rem}
+    .paper-grid{display:grid; grid-template-columns:1.1fr .9fr; gap:16px}
+    details.task{background:rgba(255,255,255,.06); border:1px solid var(--line); border-radius:20px; margin:12px 0; overflow:hidden}
+    details.task > summary{cursor:pointer; list-style:none; padding:16px 18px; font-weight:900; color:white; display:flex; justify-content:space-between; gap:12px; align-items:center}
+    details.task > summary::-webkit-details-marker{display:none}
+    details.task[open] > summary{border-bottom:1px solid var(--line)}
+    .task-body{padding:16px 18px; color:var(--muted)}
+    .task-body strong{color:#eef7ff}
+    .task-body ol,.task-body ul{padding-left:1.25rem}
+    .hint details,.solution details,.nested details{border:1px solid rgba(255,255,255,.16); border-radius:14px; margin:8px 0; background:rgba(255,255,255,.04); overflow:hidden}
+    .hint summary,.solution summary,.nested summary{cursor:pointer; padding:10px 12px; font-weight:900; color:#dff8ff; list-style:none}
+    .hint summary::-webkit-details-marker,.solution summary::-webkit-details-marker,.nested summary::-webkit-details-marker{display:none}
+    .hint details[open] summary,.solution details[open] summary,.nested details[open] summary{border-bottom:1px solid rgba(255,255,255,.14)}
+    .inside{padding:10px 12px; color:var(--muted)}
+    .solution details{border-color:rgba(94,234,212,.3); background:rgba(94,234,212,.07)}
+    .solution summary{color:var(--good)}
+    .callout{border-left:4px solid var(--accent); background:#edfafe; padding:10px 12px; border-radius:12px; margin:10px 0; color:#0f172a}
+    .warning{border-left-color:var(--warn); background:#fff7d6}
+    .paper .mini-card{border:1px solid #d8e3f2; background:white; border-radius:14px; padding:12px; color:#334155}
+    .mini-grid{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; margin:10px 0}
+    .tagrow{display:flex; flex-wrap:wrap; gap:7px; margin:.6rem 0}
+    .tag{font-size:.76rem; border:1px solid #cbd5e1; color:#334155; background:#f8fafc; border-radius:999px; padding:4px 8px; font-weight:700}
+    .dark-tag{font-size:.78rem; border:1px solid rgba(255,255,255,.18); color:#c7d7f2; background:rgba(255,255,255,.06); border-radius:999px; padding:5px 9px; font-weight:800; display:inline-flex; gap:5px; align-items:center}
+    .checklist{display:grid; gap:8px; margin-top:10px}
+    .checkline{display:flex; gap:10px; align-items:flex-start; color:var(--muted)}
+    .checkline input{accent-color:#00a8cc; width:18px; height:18px; margin-top:2px}
+    .form-grid{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; margin:12px 0}
+    label{display:grid; gap:6px; color:var(--muted); font-weight:700; font-size:.92rem}
+    input,select,textarea{background:#071022; color:var(--ink); border:1px solid var(--line); border-radius:14px; padding:12px 14px; font:inherit; outline:none; width:100%}
+    textarea{min-height:88px; resize:vertical}
+    input:focus,select:focus,textarea:focus{border-color:var(--accent); box-shadow:0 0 0 4px rgba(0,213,255,.12)}
+    input[type="range"]{padding:0; accent-color:#00d5ff}
+    .result{margin-top:12px; border:1px solid rgba(0,213,255,.35); background:rgba(0,213,255,.08); border-radius:16px; padding:14px; color:#e6fbff; min-height:52px}
+    .result.ok{border-color:rgba(94,234,212,.45); background:rgba(94,234,212,.08)}
+    .result.no{border-color:rgba(251,113,133,.45); background:rgba(251,113,133,.08)}
+    canvas{width:100%; max-width:100%; background:#071022; border:1px solid var(--line); border-radius:18px; margin-top:12px}
+    .tabs{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:14px}
+    .tab.active{background:linear-gradient(135deg,var(--accent),var(--accent2)); color:#04111e; border:0}
+    .tab-panel{display:none}
+    .tab-panel.active{display:block}
+    .quiz-grid{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px}
+    .quiz-card{background:rgba(255,255,255,.06); border:1px solid var(--line); border-radius:18px; padding:14px}
+    .answers{display:flex; flex-direction:column; gap:8px; margin-top:10px}
+    .answers button{justify-content:flex-start; white-space:normal; text-align:left; border-radius:14px}
+    .feedback{margin-top:10px; min-height:24px; font-weight:800}
+    .feedback.ok{color:var(--good)}
+    .feedback.no{color:var(--bad)}
+    .compare-wrap{overflow:auto; border-radius:18px; border:1px solid var(--line)}
+    .compare{width:100%; border-collapse:collapse; background:rgba(255,255,255,.05); min-width:760px}
+    .compare th,.compare td{padding:12px; border-bottom:1px solid var(--line); text-align:left; vertical-align:top}
+    .compare th{color:white; background:rgba(255,255,255,.08)}
+    .compare td{color:var(--muted)}
+    .glossary{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px}
+    .term{background:rgba(255,255,255,.06); border:1px solid var(--line); border-radius:18px; padding:14px}
+    .term b{display:block; color:white; margin-bottom:5px}
+    .term span{color:var(--muted); font-size:.94rem}
+    .source-list{columns:2; column-gap:28px; color:var(--muted)}
+    .source-list li{break-inside:avoid; margin:0 0 10px}
+    .formula{display:inline-block; font-family:"Cambria Math","STIX Two Math","Times New Roman",serif; font-weight:700; letter-spacing:.01em; padding:.08em .32em; border-radius:.45em; background:rgba(0,213,255,.10); border:1px solid rgba(0,213,255,.22); color:inherit; white-space:nowrap; max-width:100%; overflow-x:auto; vertical-align:middle}
+    .paper .formula,.task-body .callout .formula{background:#eef8ff; border-color:#cdeef8; color:#0f172a}
+    .result .formula,.dark-card .formula,.quiz-card .formula,.compare .formula,.task-body .formula{background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.18); color:inherit}
+    .formula math{font-family:"Cambria Math","STIX Two Math","STIXGeneral","Times New Roman",serif; font-size:1.08em}
+    .formula mtext{font-family:inherit; font-style:normal}
+    .kbd{border:1px solid var(--line); border-bottom-width:2px; border-radius:8px; padding:1px 6px; color:#dbeafe; background:#0b1325; font-size:.86em}
+    .score{font-size:1.1rem; color:white; font-weight:900}
+    footer{padding:32px 0 50px; color:var(--muted)}
+    @media (max-width:980px){.hero-grid,.board,.board.three,.paper-grid{grid-template-columns:1fr}.timeline{grid-template-columns:repeat(3,minmax(0,1fr))}.glossary{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media (max-width:640px){.wrap{width:min(100% - 20px,1180px)}.paper{padding:14px; border-radius:20px}.timeline,.mini-grid,.form-grid,.quiz-grid,.glossary,.metric-grid{grid-template-columns:1fr}h1{letter-spacing:-.04em}.source-list{columns:1}}
+    @media print{body{background:white;color:#111827}nav.quick,.interactive-only,.tabs,footer{display:none!important}.wrap{width:100%;margin:0}.hero{padding:0}.hero-card,.dark-card,.paper{box-shadow:none;border:1px solid #ddd;background:white;color:#111827}.task-body,.dark-card p,.dark-card li,.compare td,.term span{color:#111827}section{padding:12px 0}details.task,details.task>summary{color:#111827}details.task{break-inside:avoid}.timeline{grid-template-columns:repeat(3,1fr)}}
+  </style>
+</head>
+<body>
+  <header class="hero" id="top">
+    <div class="wrap">
+      <div class="topbar">
+        <div class="brand"><span class="brand-mark">M</span><span>Mathematik · 13.1 · Station 1</span></div>
+        <a class="btn" href="#quellen">Quellen</a>
+      </div>
+      <div class="hero-grid">
+        <div class="hero-card">
+          <h1>Arbeitsblatt<br>Relative Häufigkeit → Wahrscheinlichkeit</h1>
+          <p class="lead">In dieser Sequenz untersuchst du, wie aus vielen Beobachtungen eine belastbare Schätzung für eine Wahrscheinlichkeit entsteht. Die Beispiele kommen aus Sport und Biologie: Trefferquoten, Trainingsdaten und Keimversuche.</p>
+          <div class="pillbar" aria-label="Arbeitsblatt-Eckdaten">
+            <span class="pill">Fach: Mathematik</span>
+            <span class="pill">Jahrgang 13 · Halbjahr 13.1</span>
+            <span class="pill">Bezug: Station 1 der Lernlandkarte</span>
+            <span class="pill">Zeitumfang: 3 Schulstunden · ca. 135 Minuten</span>
+            <span class="pill">Kontext: Sport und Biologie</span>
+            <span class="pill">Sozialform: Einzelarbeit ↔ Gruppenarbeit</span>
+          </div>
+          <div class="metric-grid">
+            <div class="metric"><b>9</b><span>Lernschritte vom Einstieg bis Exit-Ticket</span></div>
+            <div class="metric"><b>4</b><span>interaktive Checks / Rechner</span></div>
+            <div class="metric"><b>3</b><span>Hilfestufen pro Kernaufgabe</span></div>
+          </div>
+        </div>
+        <div class="hero-card signal" aria-label="Visualisierung: relative Häufigkeit stabilisiert sich">
+          <svg viewBox="0 0 520 340" role="img" aria-label="Diagrammidee mit schwankender relativer Häufigkeit und Zielwahrscheinlichkeit">
+            <defs>
+              <linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#00d5ff"/><stop offset="1" stop-color="#7c3cff"/></linearGradient>
+              <filter id="glow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+            </defs>
+            <rect x="24" y="28" width="472" height="284" rx="28" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.18)"/>
+            <path d="M68 260 L462 260" stroke="rgba(255,255,255,.28)" stroke-width="2"/>
+            <path d="M68 78 L68 260" stroke="rgba(255,255,255,.28)" stroke-width="2"/>
+            <path d="M68 143 L462 143" stroke="#5eead4" stroke-width="2" stroke-dasharray="8 8" opacity=".85"/>
+            <path d="M78 225 C100 98,118 188,140 128 C165 72,180 170,205 130 C230 102,250 158,275 136 C307 112,328 151,355 138 C386 130,410 150,450 140" fill="none" stroke="url(#g)" stroke-width="5" filter="url(#glow)"/>
+            <circle cx="450" cy="140" r="8" fill="#00d5ff"/>
+            <text x="86" y="70" fill="#e8f0ff" font-size="18" font-weight="800">Schwankung wird kleiner</text>
+            <text x="355" y="132" fill="#5eead4" font-size="15" font-weight="800">p</text>
+            <text x="330" y="288" fill="#a7b4ce" font-size="14">Versuchsanzahl n</text>
+            <text x="80" y="292" fill="#a7b4ce" font-size="14">wenige Daten</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <nav class="quick" aria-label="Schnellnavigation">
+    <div class="wrap">
+      <a class="btn" href="#ziele">Ziele</a>
+      <a class="btn" href="#lernpfad">Lernpfad</a>
+      <a class="btn" href="#aufgaben">Aufgaben</a>
+      <a class="btn" href="#rechner">Rechner & Simulation</a>
+      <a class="btn" href="#quiz">Mini-Quiz</a>
+      <a class="btn" href="#sicherung">Sicherung</a>
+      <a class="btn" href="#glossar">Glossar</a>
+      <a class="btn" href="#quellen">Quellen</a>
+    </div>
+  </nav>
+
+  <main>
+    <section id="ziele">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2>Orientierung: Worum geht es heute?</h2>
+            <p>Station 1 der Halbjahreslandkarte heißt: Von der relativen Häufigkeit zur Wahrscheinlichkeit. Heute klären wir, warum kleine Stichproben uns täuschen können und wie Simulationen beim Denken helfen.</p>
+          </div>
+        </div>
+        <div class="board three">
+          <div class="dark-card">
+            <h3>Nach der Sequenz kannst du …</h3>
+            <div class="checklist">
+              <label class="checkline"><input type="checkbox"> relative Häufigkeiten berechnen und als Prozentwert deuten.</label>
+              <label class="checkline"><input type="checkbox"> erklären, warum lange Versuchsreihen stabilere Schätzungen liefern.</label>
+              <label class="checkline"><input type="checkbox"> Gegenereignis, Vereinigung, Schnitt und Differenz an einfachen Kontexten unterscheiden.</label>
+              <label class="checkline"><input type="checkbox"> Simulationsergebnisse kritisch auswerten, statt nur auf ein einzelnes Ergebnis zu schauen.</label>
+            </div>
+          </div>
+          <div class="dark-card">
+            <h3>Problemfrage</h3>
+            <p>Eine Basketballspielerin trifft in 10 Würfen 7-mal. Ein Mitschüler sagt: „Dann ist ihre echte Trefferwahrscheinlichkeit genau 70&nbsp;%.”</p>
+            <p><strong>Stimmt das?</strong> Oder ist 70&nbsp;% nur eine Momentaufnahme?</p>
+            <div class="tagrow"><span class="dark-tag">Sport</span><span class="dark-tag">Daten</span><span class="dark-tag">Schätzung</span></div>
+          </div>
+          <div class="dark-card">
+            <h3>Arbeitsweise</h3>
+            <p>Die 3 Schulstunden wechseln bewusst zwischen stiller Einzelarbeit und Austausch in Gruppen. So rechnest du selbst, vergleichst aber auch Denkwege und Begründungen.</p>
+            <p><span class="kbd">Tipp</span> Öffne Hilfen erst, wenn du wirklich festhängst. Lösungen sind am Ende jeder Aufgabe einklappbar.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="lernpfad">
+      <div class="wrap">
+        <article class="paper">
+          <h2>Lernpfad für 3 Schulstunden</h2>
+          <p class="sub">Zeitlich höher aufgelöst als die Halbjahreslandkarte. Die Minutenangaben sind Orientierung und können je nach Kurs angepasst werden.</p>
+          <div class="timeline">
+            <div class="step"><small>0–10 min</small><b>Einstieg</b><p>Problemfrage zur Trefferquote. Erste Vermutung notieren.</p></div>
+            <div class="step"><small>10–25 min</small><b>Vorwissen</b><p>Relative Häufigkeit berechnen und Begriffe sortieren.</p></div>
+            <div class="step"><small>25–45 min</small><b>Erklärkarte</b><p>Von Daten zur Wahrscheinlichkeit: Formel, Bedeutung, Grenzen.</p></div>
+            <div class="step"><small>45–80 min</small><b>Simulation</b><p>Sport- oder Bio-Szenario simulieren, Graph lesen, Gruppe vergleicht.</p></div>
+            <div class="step"><small>80–110 min</small><b>Anwendung</b><p>Rechen- und Analyseaufgaben zu Ereignissen und Kombinationen.</p></div>
+            <div class="step"><small>110–135 min</small><b>Sicherung</b><p>Quiz, typische Fehler, Reflexion, Exit-Ticket.</p></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="aufgaben">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2>Interaktive Aufgabenbereiche</h2>
+            <p>Arbeite die Aufgaben der Reihe nach. Die blauen Hilfen führen dich schrittweise weiter; die grünen Lösungen sind zum Prüfen gedacht.</p>
+          </div>
+        </div>
+
+        <details class="task" open>
+          <summary><span>1 · Einstieg: Ist 7 von 10 wirklich „70&nbsp;% Wahrscheinlichkeit”?</span><span>Einzel → Gruppe</span></summary>
+          <div class="task-body">
+            <p><strong>Einzelarbeit, 4 Minuten:</strong> Notiere deine spontane Antwort auf die Problemfrage aus dem Titelbereich. Entscheide dich für eine der drei Positionen:</p>
+            <div class="form-grid">
+              <label>Meine Position
+                <select id="positionSelect">
+                  <option value="">Bitte auswählen …</option>
+                  <option>70 % ist exakt die wahre Wahrscheinlichkeit.</option>
+                  <option>70 % ist die relative Häufigkeit dieser 10 Würfe.</option>
+                  <option>Ohne weitere Daten kann man gar nichts sagen.</option>
+                </select>
+              </label>
+              <label>Meine Begründung in einem Satz
+                <textarea id="positionReason" placeholder="Schreibe kurz: Warum denkst du das?"></textarea>
+              </label>
+            </div>
+            <button id="savePosition" class="primary">Rückmeldung anzeigen</button>
+            <div class="result" id="positionResult"></div>
+            <p><strong>Gruppenarbeit, 6 Minuten:</strong> Vergleicht eure Positionen. Einigt euch auf eine gemeinsame Formulierung.</p>
+            <div class="hint">
+              <details><summary>Hilfe 1: Denkimpuls</summary><div class="inside">Unterscheide zwischen dem, was du beobachtet hast, und dem, was du über viele Wiederholungen erwartest.</div></details>
+              <details><summary>Hilfe 2: Begriff</summary><div class="inside">„7 von 10” ist zunächst eine relative Häufigkeit. Eine Wahrscheinlichkeit ist ein Modellwert oder eine langfristige Erwartung.</div></details>
+              <details><summary>Hilfe 3: Beispiel</summary><div class="inside">Auch bei einer echten Trefferwahrscheinlichkeit von 70&nbsp;% können in 10 Würfen zufällig 5, 6, 7, 8 oder andere Trefferzahlen auftreten.</div></details>
+            </div>
+            <div class="solution">
+              <details><summary>Lösung anzeigen</summary><div class="inside">Die beste Aussage ist: <strong>70&nbsp;% ist die relative Häufigkeit dieser 10 Würfe.</strong> Sie kann eine Schätzung für die Wahrscheinlichkeit sein, beweist aber nicht, dass die echte Trefferwahrscheinlichkeit exakt 70&nbsp;% beträgt. Dafür ist die Stichprobe zu klein.</div></details>
+            </div>
+          </div>
+        </details>
+
+        <details class="task">
+          <summary><span>2 · Vorwissen aktivieren: Relative Häufigkeit berechnen</span><span>Einzelarbeit</span></summary>
+          <div class="task-body">
+            <p>Berechne die relative Häufigkeit für ein Ereignis A. Nutze den Rechner unten oder rechne zuerst selbst.</p>
+            <p>Grundformel: <span class="formula" role="math" aria-label="h n von A gleich Anzahl der Treffer durch Anzahl der Versuche"><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>h</mi><mi>n</mi></msub><mo>(</mo><mi>A</mi><mo>)</mo><mo>=</mo><mfrac><mtext>Anzahl der Treffer</mtext><mtext>Anzahl der Versuche</mtext></mfrac></mrow></math></span></p>
+            <div class="form-grid">
+              <label>Anzahl der Treffer <input id="freqHits" type="number" value="7" min="0" step="1"></label>
+              <label>Anzahl der Versuche <input id="freqN" type="number" value="10" min="1" step="1"></label>
+            </div>
+            <button id="freqCalc" class="primary">Berechnen</button>
+            <div class="result" id="freqResult"></div>
+            <div class="hint">
+              <details><summary>Hilfe 1: Denkimpuls</summary><div class="inside">Der Zähler zählt, wie oft das Ereignis eintritt. Der Nenner zählt alle Durchführungen.</div></details>
+              <details><summary>Hilfe 2: Vorgehensweise</summary><div class="inside">Teile Treffer durch Versuche. Für Prozent multiplizierst du mit 100.</div></details>
+              <details><summary>Hilfe 3: Zwischenschritt</summary><div class="inside">Bei 7 Treffern in 10 Würfen gilt: 7 geteilt durch 10 ist 0,7.</div></details>
+            </div>
+            <div class="solution">
+              <details><summary>Lösung anzeigen</summary><div class="inside">Für 7 Treffer in 10 Versuchen gilt: <span class="formula" role="math" aria-label="h zehn von A gleich sieben Zehntel gleich null Komma sieben gleich siebzig Prozent"><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>h</mi><mn>10</mn></msub><mo>(</mo><mi>A</mi><mo>)</mo><mo>=</mo><mfrac><mn>7</mn><mn>10</mn></mfrac><mo>=</mo><mn>0,7</mn><mo>=</mo><mn>70</mn><mtext> %</mtext></mrow></math></span>. Antwortsatz: In dieser Stichprobe waren 70&nbsp;% der Würfe Treffer.</div></details>
+            </div>
+          </div>
+        </details>
+
+        <details class="task">
+          <summary><span>3 · Erklärkarte: Von Häufigkeit zu Wahrscheinlichkeit</span><span>Einzel → Partner</span></summary>
+          <div class="task-body">
+            <div class="paper-grid">
+              <div>
+                <p><strong>Relative Häufigkeit</strong> beschreibt Daten, die du beobachtet hast. Sie kann sich bei kleinen Stichproben stark ändern.</p>
+                <p><strong>Wahrscheinlichkeit</strong> beschreibt einen Modellwert oder eine langfristige Erwartung. Sie ist nicht direkt „sichtbar”, sondern wird aus Theorie, Erfahrung oder vielen Daten geschätzt.</p>
+                <div class="callout"><b>Merksatz:</b> Je öfter ein Zufallsexperiment unter gleichen Bedingungen wiederholt wird, desto eher stabilisiert sich die relative Häufigkeit in der Nähe der zugrunde liegenden Wahrscheinlichkeit. Einzelne Ausreißer bleiben aber möglich.</div>
+              </div>
+              <div>
+                <div class="mini-grid">
+                  <div class="mini-card"><b>Sport</b>10 Würfe sind eine Momentaufnahme. 300 Würfe liefern meist ein stabileres Bild der Trefferquote.</div>
+                  <div class="mini-card"><b>Biologie</b>Bei 8 Samen kann die Keimrate zufällig stark schwanken. Bei 400 Samen wird die Schätzung belastbarer.</div>
+                </div>
+              </div>
+            </div>
+            <p><strong>Partnerauftrag:</strong> Formuliert den Merksatz in eigenen Worten so, dass ihn eine Person aus Klasse 11 verstehen würde.</p>
+            <textarea id="ownRule" placeholder="Unser Merksatz in eigenen Worten …"></textarea>
+            <button id="ruleCheck" class="primary">Beispielrückmeldung anzeigen</button>
+            <div class="result" id="ruleResult"></div>
+            <div class="solution">
+              <details><summary>Lösung anzeigen</summary><div class="inside">Eine gute Schülerformulierung wäre zum Beispiel: „Eine relative Häufigkeit aus wenigen Versuchen ist nur ein Zwischenstand. Wenn man sehr oft wiederholt, schwankt der Wert meistens weniger und liegt näher an der eigentlichen Wahrscheinlichkeit.”</div></details>
+            </div>
+          </div>
+        </details>
+
+        <details class="task">
+          <summary><span>4 · Erkundung: Simulation Sport oder Biologie</span><span>Gruppenarbeit</span></summary>
+          <div class="task-body">
+            <p>Wählt in der Simulation ein Szenario. Führt mehrere Durchläufe mit gleicher Wahrscheinlichkeit, aber unterschiedlicher Versuchszahl durch. Beobachtet, wie die relative Häufigkeit schwankt.</p>
+            <ol>
+              <li>Startet mit 10 Versuchen.</li>
+              <li>Vergleicht danach 50, 100 und 500 Versuche.</li>
+              <li>Notiert: Was wird stabiler? Was bleibt zufällig?</li>
+            </ol>
+            <div class="hint">
+              <details><summary>Hilfe 1: Denkimpuls</summary><div class="inside">Achte nicht nur auf den Endwert. Schau auf den Verlauf der Kurve.</div></details>
+              <details><summary>Hilfe 2: Vorgehensweise</summary><div class="inside">Vergleicht in der Gruppe mindestens drei Simulationsläufe mit derselben Einstellung. Zufall bedeutet: Nicht jeder Lauf sieht gleich aus.</div></details>
+              <details><summary>Hilfe 3: Formulierungshilfe</summary><div class="inside">„Bei wenigen Versuchen schwankt …; bei vielen Versuchen …; trotzdem kann …”</div></details>
+            </div>
+            <div class="solution">
+              <details><summary>Musterbeobachtung anzeigen</summary><div class="inside">Bei kleinen Versuchszahlen kann die relative Häufigkeit deutlich über oder unter dem eingestellten Modellwert liegen. Mit wachsender Versuchszahl verläuft die Kurve meist ruhiger und der Endwert liegt oft näher am Modellwert. Das ist kein Beweis für einen einzelnen Lauf, aber ein typisches Langzeitverhalten.</div></details>
+            </div>
+          </div>
+        </details>
+
+        <details class="task">
+          <summary><span>5 · Anwendung: Ereignisse sauber unterscheiden</span><span>Einzelarbeit</span></summary>
+          <div class="task-body">
+            <p>Im Sport-Kontext sei A: „Wurf ist Treffer” und B: „Wurf war ein Freiwurf im Spiel unter Druck”. Im Bio-Kontext sei A: „Samen keimt” und B: „Samen wurde mit Licht behandelt”.</p>
+            <p>Ordne die vier Aussagen den Ereignisverknüpfungen zu.</p>
+            <div class="form-grid">
+              <label>„A tritt nicht ein”
+                <select class="eventSelect" data-answer="comp"><option value="">Auswählen …</option><option value="comp">Gegenereignis</option><option value="union">Vereinigung</option><option value="inter">Schnitt</option><option value="diff">Differenz</option></select>
+              </label>
+              <label>„A oder B oder beide treten ein”
+                <select class="eventSelect" data-answer="union"><option value="">Auswählen …</option><option value="comp">Gegenereignis</option><option value="union">Vereinigung</option><option value="inter">Schnitt</option><option value="diff">Differenz</option></select>
+              </label>
+              <label>„A und B treten gleichzeitig ein”
+                <select class="eventSelect" data-answer="inter"><option value="">Auswählen …</option><option value="comp">Gegenereignis</option><option value="union">Vereinigung</option><option value="inter">Schnitt</option><option value="diff">Differenz</option></select>
+              </label>
+              <label>„A tritt ein, B aber nicht”
+                <select class="eventSelect" data-answer="diff"><option value="">Auswählen …</option><option value="comp">Gegenereignis</option><option value="union">Vereinigung</option><option value="inter">Schnitt</option><option value="diff">Differenz</option></select>
+              </label>
+            </div>
+            <button id="eventCheck" class="primary">Zuordnung prüfen</button>
+            <div class="result" id="eventResult"></div>
+            <div class="hint">
+              <details><summary>Hilfe 1: Denkimpuls</summary><div class="inside">„Und” macht die Bedingung enger. „Oder” macht sie weiter.</div></details>
+              <details><summary>Hilfe 2: Symbolsprache</summary><div class="inside">Gegenereignis: <span class="formula" role="math" aria-label="A quer"><math xmlns="http://www.w3.org/1998/Math/MathML"><mover><mi>A</mi><mo>¯</mo></mover></math></span>, Vereinigung: <span class="formula" role="math" aria-label="A vereinigt B"><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>A</mi><mo>∪</mo><mi>B</mi></mrow></math></span>, Schnitt: <span class="formula" role="math" aria-label="A geschnitten B"><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>A</mi><mo>∩</mo><mi>B</mi></mrow></math></span>, Differenz: <span class="formula" role="math" aria-label="A ohne B"><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>A</mi><mo>∖</mo><mi>B</mi></mrow></math></span>.</div></details>
+              <details><summary>Hilfe 3: Beispiel</summary><div class="inside">„Samen keimt und wurde mit Licht behandelt” ist ein Schnitt, weil beide Bedingungen gleichzeitig gelten müssen.</div></details>
+            </div>
+            <div class="solution">
+              <details><summary>Lösung anzeigen</summary><div class="inside">Nicht A: Gegenereignis. A oder B oder beide: Vereinigung. A und B gleichzeitig: Schnitt. A, aber nicht B: Differenz.</div></details>
+            </div>
+          </div>
+        </details>
+
+        <details class="task">
+          <summary><span>6 · Transfer: Aussage prüfen</span><span>Gruppe → Einzel</span></summary>
+          <div class="task-body">
+            <p>Eine Gruppe untersucht Samen. Von 20 Samen keimen 15. Eine zweite Gruppe untersucht 200 Samen derselben Sorte. Dort keimen 142.</p>
+            <ol>
+              <li>Berechne beide relativen Häufigkeiten.</li>
+              <li>Welche Schätzung wirkt belastbarer? Begründe ohne zu übertreiben.</li>
+              <li>Formuliere eine faire Aussage für einen Bericht.</li>
+            </ol>
+            <div class="hint">
+              <details><summary>Hilfe 1: Denkimpuls</summary><div class="inside">Vergleiche nicht nur die Prozentwerte, sondern auch die Versuchszahl.</div></details>
+              <details><summary>Hilfe 2: Rechenweg</summary><div class="inside">Teile jeweils Anzahl der gekeimten Samen durch Anzahl aller untersuchten Samen.</div></details>
+              <details><summary>Hilfe 3: Zwischenschritt</summary><div class="inside">15 geteilt durch 20 ergibt 0,75. 142 geteilt durch 200 ergibt 0,71.</div></details>
+            </div>
+            <div class="solution">
+              <details><summary>Lösung anzeigen</summary><div class="inside">Gruppe 1: <span class="formula" role="math" aria-label="fünfzehn durch zwanzig gleich null Komma fünfundsiebzig gleich fünfundsiebzig Prozent"><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mfrac><mn>15</mn><mn>20</mn></mfrac><mo>=</mo><mn>0,75</mn><mo>=</mo><mn>75</mn><mtext> %</mtext></mrow></math></span>. Gruppe 2: <span class="formula" role="math" aria-label="hundertzweiundvierzig durch zweihundert gleich null Komma einundsiebzig gleich einundsiebzig Prozent"><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mfrac><mn>142</mn><mn>200</mn></mfrac><mo>=</mo><mn>0,71</mn><mo>=</mo><mn>71</mn><mtext> %</mtext></mrow></math></span>. Die zweite Schätzung wirkt belastbarer, weil sie auf deutlich mehr Beobachtungen beruht. Faire Aussage: „In unserer größeren Stichprobe lag die Keimrate bei etwa 71&nbsp;%. Das ist eine Schätzung unter den verwendeten Versuchsbedingungen.”</div></details>
+            </div>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section id="rechner" class="calculators">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2>Rechner & Simulationen</h2>
+            <p>Diese Tools sind lokal im Arbeitsblatt eingebaut. Sie funktionieren ohne Internet und erzeugen ihre Ausgaben als lesbare Formeln oder Diagramme.</p>
+          </div>
+        </div>
+        <div class="dark-card">
+          <div class="tabs interactive-only" role="tablist" aria-label="Rechner auswählen">
+            <button class="tab active" data-tab="sim">Simulation</button>
+            <button class="tab" data-tab="freq">Häufigkeitsrechner</button>
+            <button class="tab" data-tab="events">Ereignis-Rechner</button>
+            <button class="tab" data-tab="check">Aufgabencheck</button>
+          </div>
+
+          <div class="tab-panel active" id="tab-sim">
+            <h3>Simulation: Viele Wiederholungen eines Zufallsexperiments</h3>
+            <p>Der Regler „Modellwahrscheinlichkeit” ist der angenommene langfristige Wert. Die Kurve zeigt nach jedem Versuch die bisherige relative Häufigkeit.</p>
+            <div class="form-grid">
+              <label>Szenario
+                <select id="simScenario"><option value="sport">Sport: Treffer beim Freiwurf</option><option value="bio">Biologie: Samen keimt</option></select>
+              </label>
+              <label>Modellwahrscheinlichkeit <span class="formula" role="math" aria-label="p"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>p</mi></math></span> in Prozent
+                <input id="simP" type="range" min="5" max="95" step="1" value="70">
+              </label>
+              <label>Versuchsanzahl <span class="formula" role="math" aria-label="n"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>n</mi></math></span>
+                <input id="simN" type="range" min="10" max="500" step="10" value="100">
+              </label>
+              <label>Anzeige
+                <select id="simMode"><option value="line">Kurve der relativen Häufigkeit</option><option value="bars">Blockansicht: Erfolg / Misserfolg</option></select>
+              </label>
+            </div>
+            <button id="simRun" class="primary">Neuen Zufallslauf starten</button>
+            <canvas id="simCanvas" width="920" height="360" aria-label="Simulation relativer Häufigkeiten"></canvas>
+            <div class="result" id="simResult"></div>
+          </div>
+
+          <div class="tab-panel" id="tab-freq">
+            <h3>Häufigkeitsrechner</h3>
+            <p>Berechne aus beobachteten Daten eine relative Häufigkeit.</p>
+            <div class="form-grid">
+              <label>Treffer / Erfolge <input id="calcHits" type="number" min="0" step="1" value="142"></label>
+              <label>Versuche insgesamt <input id="calcN" type="number" min="1" step="1" value="200"></label>
+            </div>
+            <button id="calcFreq" class="primary">Berechnen</button>
+            <div class="result" id="calcFreqResult"></div>
+          </div>
+
+          <div class="tab-panel" id="tab-events">
+            <h3>Ereignis-Rechner</h3>
+            <p>Wenn du Wahrscheinlichkeiten für A, B und den Schnitt kennst, kannst du Gegenereignis, Vereinigung und Differenz berechnen.</p>
+            <div class="form-grid">
+              <label><span class="formula" role="math" aria-label="P von A"><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>P</mi><mo>(</mo><mi>A</mi><mo>)</mo></mrow></math></span> in Prozent <input id="pA" type="number" min="0" max="100" step="1" value="70"></label>
+              <label><span class="formula" role="math" aria-label="P von B"><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>P</mi><mo>(</mo><mi>B</mi><mo>)</mo></mrow></math></span> in Prozent <input id="pB" type="number" min="0" max="100" step="1" value="40"></label>
+              <label><span class="formula" role="math" aria-label="P von A geschnitten B"><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>P</mi><mo>(</mo><mi>A</mi><mo>∩</mo><mi>B</mi><mo>)</mo></mrow></math></span> in Prozent <input id="pAB" type="number" min="0" max="100" step="1" value="30"></label>
+              <label>Kontext <select id="eventContext"><option>Sport: Treffer und Drucksituation</option><option>Biologie: Keimung und Lichtbehandlung</option></select></label>
+            </div>
+            <button id="eventCalc" class="primary">Ereignisse berechnen</button>
+            <div class="result" id="eventCalcResult"></div>
+          </div>
+
+          <div class="tab-panel" id="tab-check">
+            <h3>Aufgabencheck: Bio-Stichprobe</h3>
+            <p>Von 80 Samen keimen 58. Gib die relative Häufigkeit in Prozent ein. Runde auf eine Nachkommastelle.</p>
+            <div class="form-grid">
+              <label>Deine Antwort in Prozent <input id="bioAnswer" type="number" step="0.1" placeholder="z. B. 72,5"></label>
+              <label>Begründung in einem Satz <input id="bioReason" type="text" placeholder="Ich rechne …"></label>
+            </div>
+            <button id="bioCheck" class="primary">Prüfen</button>
+            <div class="result" id="bioResult"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="quiz" class="quiz-section">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2>Mini-Quiz mit Sofortfeedback</h2>
+            <p>Kein Test, sondern ein Selbstcheck: Du bekommst direkt eine Rückmeldung mit kurzer Erklärung.</p>
+          </div>
+          <div class="score" id="quizScore">Punkte: 0 / 6</div>
+        </div>
+        <div class="quiz-grid">
+          <div class="quiz-card" data-quiz><h3>1 · Was beschreibt eine relative Häufigkeit?</h3><div class="answers"><button data-correct="true">Einen beobachteten Anteil in einer Stichprobe.</button><button data-correct="false">Immer die exakte wahre Wahrscheinlichkeit.</button><button data-correct="false">Nur eine subjektive Meinung.</button></div><div class="feedback"></div></div>
+          <div class="quiz-card" data-quiz><h3>2 · Welche Formel passt zu 18 Treffern bei 30 Versuchen?</h3><div class="answers"><button data-correct="false">18 plus 30</button><button data-correct="true"><span class="formula" role="math" aria-label="achtzehn durch dreißig"><math xmlns="http://www.w3.org/1998/Math/MathML"><mfrac><mn>18</mn><mn>30</mn></mfrac></math></span></button><button data-correct="false">30 geteilt durch 18 als Trefferquote</button></div><div class="feedback"></div></div>
+          <div class="quiz-card" data-quiz><h3>3 · Warum sind 500 Versuche meist hilfreicher als 10?</h3><div class="answers"><button data-correct="true">Zufallsschwankungen fallen relativ weniger stark ins Gewicht.</button><button data-correct="false">Weil Zufall ab 500 Versuchen verschwindet.</button><button data-correct="false">Weil dann immer exakt der Modellwert herauskommt.</button></div><div class="feedback"></div></div>
+          <div class="quiz-card" data-quiz><h3>4 · „A und B” meint …</h3><div class="answers"><button data-correct="false">Vereinigung.</button><button data-correct="true">Schnitt.</button><button data-correct="false">Gegenereignis.</button></div><div class="feedback"></div></div>
+          <div class="quiz-card" data-quiz><h3>5 · Was ist das Gegenereignis zu „Samen keimt”?</h3><div class="answers"><button data-correct="false">Samen keimt und bekommt Licht.</button><button data-correct="true">Samen keimt nicht.</button><button data-correct="false">Samen keimt oder bekommt Licht.</button></div><div class="feedback"></div></div>
+          <div class="quiz-card" data-quiz><h3>6 · Welche Aussage ist fair formuliert?</h3><div class="answers"><button data-correct="false">„15 von 20 beweist eine Keimwahrscheinlichkeit von exakt 75 %.”</button><button data-correct="true">„15 von 20 ergibt in dieser Stichprobe eine relative Häufigkeit von 75 %.”</button><button data-correct="false">„Bei 20 Samen darf man keine Prozentwerte berechnen.”</button></div><div class="feedback"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="sicherung">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2>Sicherung, typische Fehler und Exit-Ticket</h2>
+            <p>Zum Abschluss ordnest du die wichtigsten Gedanken und prüfst, was du jetzt sicher kannst.</p>
+          </div>
+        </div>
+        <div class="board">
+          <div class="dark-card">
+            <h3>Merksätze</h3>
+            <ul>
+              <li>Relative Häufigkeit ist ein beobachteter Anteil: <span class="formula" role="math" aria-label="h n von A gleich Treffer durch Versuche"><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>h</mi><mi>n</mi></msub><mo>(</mo><mi>A</mi><mo>)</mo><mo>=</mo><mfrac><mtext>Treffer</mtext><mtext>Versuche</mtext></mfrac></mrow></math></span>.</li>
+              <li>Wahrscheinlichkeit ist ein Modellwert oder eine langfristige Erwartung.</li>
+              <li>Bei vielen Wiederholungen stabilisiert sich die relative Häufigkeit oft in der Nähe der Wahrscheinlichkeit, aber nicht monoton und nicht garantiert in jedem einzelnen Abschnitt.</li>
+              <li>„Und” bedeutet Schnitt, „oder” bedeutet Vereinigung, „nicht” bedeutet Gegenereignis.</li>
+            </ul>
+          </div>
+          <div class="dark-card">
+            <h3>Typische Fehler</h3>
+            <div class="compare-wrap">
+              <table class="compare">
+                <thead><tr><th>Fehler</th><th>Besser denken</th></tr></thead>
+                <tbody>
+                  <tr><td>„7 von 10 heißt: p ist exakt 70 %.”</td><td>„7 von 10 ist eine relative Häufigkeit und höchstens eine Schätzung für p.”</td></tr>
+                  <tr><td>„Viele Versuche liefern immer exakt p.”</td><td>„Viele Versuche liefern meistens stabilere Werte, aber Zufall bleibt möglich.”</td></tr>
+                  <tr><td>„A oder B” als „entweder A oder B, aber nicht beide” lesen.</td><td>In der Schulstochastik meint „oder” meist: A, B oder beide.</td></tr>
+                  <tr><td>Prozentwert ohne Bezug nennen.</td><td>Immer sagen: Prozent von welcher Stichprobe und unter welchen Bedingungen?</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <details class="task" open>
+          <summary><span>Reflexion & Exit-Ticket</span><span>Einzelarbeit · 5 Minuten</span></summary>
+          <div class="task-body">
+            <p><strong>Reflexion:</strong> Wähle aus, was du jetzt sicher kannst.</p>
+            <div class="checklist">
+              <label class="checkline"><input type="checkbox"> Ich kann eine relative Häufigkeit berechnen.</label>
+              <label class="checkline"><input type="checkbox"> Ich kann erklären, warum eine größere Stichprobe meist aussagekräftiger ist.</label>
+              <label class="checkline"><input type="checkbox"> Ich kann eine faire Aussage formulieren, ohne zu übertreiben.</label>
+              <label class="checkline"><input type="checkbox"> Ich kann Gegenereignis, Vereinigung, Schnitt und Differenz in Worten unterscheiden.</label>
+            </div>
+            <p><strong>Exit-Ticket:</strong> Formuliere in höchstens zwei Sätzen:</p>
+            <div class="callout warning">Warum ist „Die Wahrscheinlichkeit beträgt genau 75&nbsp;%” bei 15 Erfolgen in 20 Versuchen problematisch?</div>
+            <textarea id="exitTicket" placeholder="Meine Antwort …"></textarea>
+            <button id="exitFeedback" class="primary">Feedback anzeigen</button>
+            <div class="result" id="exitResult"></div>
+            <div class="solution"><details><summary>Musterantwort anzeigen</summary><div class="inside">Problematisch ist, dass 15 von 20 nur die relative Häufigkeit dieser konkreten Stichprobe ist. Man darf daraus eine Wahrscheinlichkeit schätzen, aber nicht behaupten, der wahre Wert sei exakt 75&nbsp;%.</div></details></div>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section id="glossar" class="glossar">
+      <div class="wrap">
+        <div class="section-head"><div><h2>Glossar</h2><p>Kurze Begriffe für Station 1.</p></div></div>
+        <div class="glossary">
+          <div class="term"><b>Absolute Häufigkeit</b><span>Anzahl, wie oft ein Ereignis beobachtet wurde.</span></div>
+          <div class="term"><b>Relative Häufigkeit</b><span>Anteil eines Ereignisses an allen Versuchen.</span></div>
+          <div class="term"><b>Wahrscheinlichkeit</b><span>Modellwert oder langfristige Erwartung für ein Ereignis.</span></div>
+          <div class="term"><b>Stichprobe</b><span>Ausgewählte oder beobachtete Datenmenge.</span></div>
+          <div class="term"><b>Ereignis</b><span>Ausgang oder Menge von Ausgängen eines Zufallsexperiments.</span></div>
+          <div class="term"><b>Gegenereignis</b><span>Alles, was nicht zum Ereignis gehört.</span></div>
+          <div class="term"><b>Schnitt</b><span>A und B treten gleichzeitig ein.</span></div>
+          <div class="term"><b>Vereinigung</b><span>A oder B oder beide treten ein.</span></div>
+          <div class="term"><b>Simulation</b><span>Nachbildung vieler Zufallsversuche mit einem Modell.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="quellen" class="sources">
+      <div class="wrap">
+        <div class="section-head"><div><h2>Kompaktes Quellenverzeichnis</h2><p>Die Datei ist offline nutzbar. Die Quellen dienen zur fachlichen und curricularen Orientierung.</p></div></div>
+        <div class="dark-card">
+          <ol class="source-list">
+            <li>Vorherige interaktive HTML-Lernlandkarte: Mathematik 13.1, Stochastik – Halbjahresübersicht „Vom Experiment zur Wahrscheinlichkeit und Hypothesentests zur Analyse empirischer Daten”.</li>
+            <li>Hochgeladene didaktische Jahresplanung: DJP PF – M – 13.1, Kurshalbjahr 13.1, Fach Mathematik, Station „von der relativen Häufigkeit zur Wahrscheinlichkeit”, anonymisiert ausgewertet.</li>
+            <li>Berufsbildung NRW: Bildungspläne Berufliches Gymnasium Anlage D 16–17a, Teil III Mathematik Grundkurs. https://berufsbildung.nrw.de/bildungsgaenge-bildungsplaene/bildungsplaene-berufliches-gymnasium-und-fachoberschule-anlage-d-9</li>
+            <li>Serlo Mathematik: Themenbereich „Relative Häufigkeit und Wahrscheinlichkeit”, u. a. empirisches Gesetz der großen Zahlen und Aufgabenformate. https://de.serlo.org/mathe/16361/relative-haeufigkeit-und-wahrscheinlichkeit</li>
+            <li>Fachliche Standardgrundlagen der Schulstochastik: relative Häufigkeit, Ereignisse, Gegenereignis, Vereinigung, Schnitt, Differenz und Simulationen.</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p><b>Hinweis:</b> Dieses Arbeitsblatt ist ein Lernmaterial für selbstständiges Arbeiten. Es enthält keine personenbezogenen Daten und keine sensiblen schulischen Informationen.</p>
+      <p>Tipp: Mit <span class="kbd">Strg</span> + <span class="kbd">F</span> kannst du Begriffe im Arbeitsblatt suchen.</p>
+    </div>
+  </footer>
+
+  <script>
+    const $ = (sel, root=document) => root.querySelector(sel);
+    const qsa = (sel, root=document) => [...root.querySelectorAll(sel)];
+    const clamp = (x,min,max) => Math.min(max, Math.max(min, x));
+    function h(s){ return String(s).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch])); }
+    function fmt(x,digits=2){ return Number.isFinite(x) ? x.toLocaleString('de-DE',{maximumFractionDigits:digits, minimumFractionDigits:0, useGrouping:false}) : '—'; }
+    function fmt1(x){ return Number.isFinite(x) ? x.toLocaleString('de-DE',{maximumFractionDigits:1, minimumFractionDigits:1, useGrouping:false}) : '—'; }
+    function num(sel){ return parseFloat($(sel).value.toString().replace(',', '.')); }
+    const mi = s => `<mi>${h(s)}</mi>`;
+    const mn = s => `<mn>${h(s)}</mn>`;
+    const mo = s => `<mo>${h(s)}</mo>`;
+    const mt = s => `<mtext>${h(s)}</mtext>`;
+    const row = (...xs) => `<mrow>${xs.join('')}</mrow>`;
+    const frac = (a,b) => `<mfrac>${a}${b}</mfrac>`;
+    const sub = (a,b) => `<msub>${a}${b}</msub>`;
+    function M(content,label='Formel'){ return `<span class="formula" role="math" aria-label="${h(label)}"><math xmlns="http://www.w3.org/1998/Math/MathML">${content}</math></span>`; }
+    function percentFormula(symbol, value, label){ return M(row(symbol,mo('='),mn(fmt(value,2)),mt(' %')), label); }
+
+    // Tabs
+    qsa('.tab').forEach(btn => btn.addEventListener('click', () => {
+      qsa('.tab').forEach(b => b.classList.remove('active'));
+      qsa('.tab-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      $('#tab-' + btn.dataset.tab).classList.add('active');
+      if(btn.dataset.tab === 'sim') drawSimulation();
+    }));
+
+    // Aufgabe 1
+    $('#savePosition').addEventListener('click', () => {
+      const value = $('#positionSelect').value;
+      const reason = $('#positionReason').value.trim();
+      const box = $('#positionResult');
+      if(!value){ box.className='result no'; box.textContent='Wähle zuerst eine Position aus.'; return; }
+      if(value.startsWith('70 % ist exakt')){
+        box.className='result no';
+        box.textContent='Vorsicht: 70 % ist hier beobachtet, aber noch kein Beweis für die exakte echte Wahrscheinlichkeit. Mehr Daten wären nötig.';
+      } else if(value.startsWith('70 % ist die relative')){
+        box.className='result ok';
+        box.textContent='Gute Unterscheidung: Du trennst Beobachtung und Modellwert. Deine Begründung kannst du in der Gruppe weiter schärfen.';
+      } else {
+        box.className='result';
+        box.textContent='Teilweise richtig: Ohne weitere Daten bleibt die echte Wahrscheinlichkeit unsicher. Trotzdem kann man die relative Häufigkeit 70 % aus den 10 Würfen berechnen.';
+      }
+      if(reason.length < 10){ box.innerHTML += '<br><small>Ergänze deine Begründung noch etwas genauer.</small>'; }
+    });
+
+    // Aufgabe 2 Rechner
+    function calcFreqTask(){
+      const hits = Math.round(num('#freqHits'));
+      const n = Math.round(num('#freqN'));
+      const box = $('#freqResult');
+      if(!Number.isFinite(hits) || !Number.isFinite(n) || n <= 0 || hits < 0 || hits > n){ box.className='result no'; box.textContent='Bitte gib gültige Werte ein: 0 ≤ Treffer ≤ Versuche und Versuche > 0.'; return; }
+      const rel = hits / n;
+      const pct = rel * 100;
+      const f = M(row(sub(mi('h'),mn(n)),mo('('),mi('A'),mo(')'),mo('='),frac(mn(hits),mn(n)),mo('='),mn(fmt(rel,4)),mo('='),mn(fmt(pct,2)),mt(' %')), `h_${n}(A) = ${fmt(pct,2)} Prozent`);
+      box.className='result ok';
+      box.innerHTML = `<b>Ergebnis:</b> ${f}<br><small>Antwortsatz: In dieser Stichprobe liegt der beobachtete Anteil bei ${fmt(pct,2)} %.</small>`;
+    }
+    $('#freqCalc').addEventListener('click', calcFreqTask);
+    ['#freqHits','#freqN'].forEach(id => $(id).addEventListener('input', calcFreqTask));
+
+    // Aufgabe 3
+    $('#ruleCheck').addEventListener('click', () => {
+      const text = $('#ownRule').value.trim();
+      const box = $('#ruleResult');
+      if(text.length < 25){ box.className='result no'; box.textContent='Dein Merksatz ist noch sehr kurz. Nutze die Wörter „beobachtet”, „viele Wiederholungen” und „stabiler”.'; }
+      else { box.className='result ok'; box.textContent='Gute Arbeitsfassung. Prüfe noch: Wird klar, dass Stabilisierung nicht heißt, dass jeder Lauf exakt beim Modellwert endet?'; }
+    });
+
+    // Ereigniszuordnung
+    $('#eventCheck').addEventListener('click', () => {
+      const selects = qsa('.eventSelect');
+      let right = 0, filled = 0;
+      selects.forEach(s => { if(s.value) filled++; if(s.value === s.dataset.answer) right++; });
+      const box = $('#eventResult');
+      if(filled < selects.length){ box.className='result no'; box.textContent='Es fehlen noch Zuordnungen.'; return; }
+      if(right === selects.length){ box.className='result ok'; box.textContent='Alles richtig. Du unterscheidest die Ereignisverknüpfungen sauber.'; }
+      else { box.className='result no'; box.textContent=`${right} von ${selects.length} sind richtig. Tipp: „und” ist Schnitt, „oder” ist Vereinigung, „nicht” ist Gegenereignis.`; }
+    });
+
+    // Simulation
+    let simData = [];
+    function generateSimulation(){
+      const p = clamp(num('#simP') / 100, 0, 1);
+      const n = Math.round(num('#simN'));
+      const scenario = $('#simScenario').value;
+      let successes = 0;
+      simData = [];
+      for(let i=1;i<=n;i++){
+        const ok = Math.random() < p;
+        if(ok) successes++;
+        simData.push({i, ok, rel: successes / i});
+      }
+      return {p,n,successes,scenario};
+    }
+    function drawSimulation(useExisting=false){
+      const canvas = $('#simCanvas');
+      if(!canvas) return;
+      const ctx = canvas.getContext('2d');
+      const W = canvas.width, H = canvas.height;
+      const p = clamp(num('#simP') / 100,0,1);
+      const n = Math.round(num('#simN'));
+      if(!useExisting || simData.length !== n){ generateSimulation(); }
+      const successes = simData.filter(d => d.ok).length;
+      const rel = successes / n;
+      const mode = $('#simMode').value;
+      ctx.clearRect(0,0,W,H);
+      ctx.fillStyle = '#071022'; ctx.fillRect(0,0,W,H);
+      const L=58, R=28, T=28, B=52;
+      ctx.strokeStyle = 'rgba(255,255,255,.14)'; ctx.lineWidth = 1;
+      for(let j=0;j<=5;j++){
+        const y = T + (H-T-B)*(j/5);
+        ctx.beginPath(); ctx.moveTo(L,y); ctx.lineTo(W-R,y); ctx.stroke();
+      }
+      ctx.strokeStyle = 'rgba(255,255,255,.35)'; ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.moveTo(L,T); ctx.lineTo(L,H-B); ctx.lineTo(W-R,H-B); ctx.stroke();
+      ctx.fillStyle = '#a7b4ce'; ctx.font = '15px system-ui';
+      ctx.fillText('relative Häufigkeit', L, 20);
+      ctx.fillText('Versuche', W-100, H-18);
+      const x = i => L + (W-L-R) * ((i-1)/Math.max(1,n-1));
+      const y = v => T + (H-T-B) * (1-v);
+      // p-Linie
+      ctx.strokeStyle = '#5eead4'; ctx.lineWidth = 2; ctx.setLineDash([8,7]);
+      ctx.beginPath(); ctx.moveTo(L, y(p)); ctx.lineTo(W-R, y(p)); ctx.stroke(); ctx.setLineDash([]);
+      ctx.fillStyle = '#5eead4'; ctx.font = 'bold 14px system-ui'; ctx.fillText('p = ' + fmt(p*100,0) + ' %', W-108, y(p)-8);
+      if(mode === 'line'){
+        const grad = ctx.createLinearGradient(L,0,W-R,0); grad.addColorStop(0,'#00d5ff'); grad.addColorStop(1,'#7c3cff');
+        ctx.strokeStyle = grad; ctx.lineWidth = 4; ctx.beginPath();
+        simData.forEach((d,idx) => { const xx = x(d.i), yy = y(d.rel); if(idx===0) ctx.moveTo(xx,yy); else ctx.lineTo(xx,yy); });
+        ctx.stroke();
+        ctx.fillStyle = '#00d5ff';
+        const last = simData[simData.length-1]; ctx.beginPath(); ctx.arc(x(last.i), y(last.rel), 7, 0, Math.PI*2); ctx.fill();
+      } else {
+        const maxBars = Math.min(n, 250);
+        const w = Math.max(2,(W-L-R)/maxBars);
+        for(let i=0;i<maxBars;i++){
+          const d = simData[Math.floor(i*n/maxBars)];
+          ctx.fillStyle = d.ok ? 'rgba(0,213,255,.8)' : 'rgba(124,60,255,.72)';
+          ctx.fillRect(L+i*w, H-B-35, Math.max(1,w-1), 35);
+        }
+      }
+      const scenarioLabel = $('#simScenario').value === 'sport' ? 'Treffer' : 'gekeimte Samen';
+      const formula = M(row(sub(mi('h'),mn(n)),mo('='),frac(mn(successes),mn(n)),mo('='),mn(fmt(rel*100,1)),mt(' %')), `h_${n} = ${fmt(rel*100,1)} Prozent`);
+      $('#simResult').innerHTML = `<b>Durchlauf:</b> ${successes} ${scenarioLabel} von ${n}. ${formula}<br><small>Modellwert: ${fmt(p*100,0)} %. Starte mehrere Zufallsläufe und vergleiche die Endwerte.</small>`;
+    }
+    $('#simRun').addEventListener('click', () => drawSimulation(false));
+    ['#simP','#simN','#simScenario','#simMode'].forEach(id => $(id).addEventListener('input', () => drawSimulation(false)));
+
+    // Häufigkeitsrechner in Tab
+    function calcFreqTool(){
+      const hits = Math.round(num('#calcHits'));
+      const n = Math.round(num('#calcN'));
+      const box = $('#calcFreqResult');
+      if(!Number.isFinite(hits) || !Number.isFinite(n) || n <= 0 || hits < 0 || hits > n){ box.className='result no'; box.textContent='Bitte gültige Werte eingeben.'; return; }
+      const pct = hits/n*100;
+      const f = M(row(msubH(n),mo('('),mi('A'),mo(')'),mo('='),frac(mn(hits),mn(n)),mo('='),mn(fmt(pct,2)),mt(' %')), `h_${n}(A) = ${fmt(pct,2)} Prozent`);
+      box.className='result ok'; box.innerHTML = `<b>Relative Häufigkeit:</b> ${f}`;
+    }
+    function msubH(n){ return sub(mi('h'),mn(n)); }
+    $('#calcFreq').addEventListener('click', calcFreqTool);
+    ['#calcHits','#calcN'].forEach(id => $(id).addEventListener('input', calcFreqTool));
+
+    // Ereignis-Rechner
+    function calcEvents(){
+      const A = num('#pA')/100, B = num('#pB')/100, AB = num('#pAB')/100;
+      const box = $('#eventCalcResult');
+      if([A,B,AB].some(x => !Number.isFinite(x)) || A<0 || A>1 || B<0 || B>1 || AB<0 || AB>1 || AB>A || AB>B){
+        box.className='result no'; box.textContent='Bitte prüfe die Eingaben: Der Schnitt darf nicht größer sein als A oder B.'; return;
+      }
+      const comp = 1-A, union = A+B-AB, diff = A-AB;
+      if(union > 1 + 1e-9){ box.className='result no'; box.textContent='Die Eingaben sind nicht plausibel: Die Vereinigung wäre größer als 100 %. Der Schnitt ist vermutlich zu klein.'; return; }
+      const fComp = percentFormula(row(mi('P'),mo('('),moverA(),mo(')')), comp*100, 'Gegenereignis');
+      const fUnion = percentFormula(row(mi('P'),mo('('),mi('A'),mo('∪'),mi('B'),mo(')')), union*100, 'Vereinigung');
+      const fDiff = percentFormula(row(mi('P'),mo('('),mi('A'),mo('∖'),mi('B'),mo(')')), diff*100, 'Differenz');
+      box.className='result ok';
+      box.innerHTML = `<b>Ergebnisse:</b><br>${fComp} · ${fUnion} · ${fDiff}<br><small>Rechenidee: Für die Vereinigung wird der Schnitt einmal abgezogen, weil er sonst doppelt gezählt wäre.</small>`;
+    }
+    function moverA(){ return `<mover><mi>A</mi><mo>¯</mo></mover>`; }
+    $('#eventCalc').addEventListener('click', calcEvents);
+    ['#pA','#pB','#pAB','#eventContext'].forEach(id => $(id).addEventListener('input', calcEvents));
+
+    // Aufgabencheck
+    $('#bioCheck').addEventListener('click', () => {
+      const ans = num('#bioAnswer');
+      const target = 58/80*100;
+      const box = $('#bioResult');
+      if(!Number.isFinite(ans)){ box.className='result no'; box.textContent='Gib zuerst einen Zahlenwert ein.'; return; }
+      if(Math.abs(ans-target) <= 0.11){
+        box.className='result ok';
+        box.innerHTML = `Richtig: ${M(row(frac(mn(58),mn(80)),mo('='),mn('0,725'),mo('='),mn('72,5'),mt(' %')), '58 durch 80 gleich 72,5 Prozent')}. Antwortsatz: In dieser Stichprobe keimten 72,5 % der Samen.`;
+      } else {
+        box.className='result no';
+        box.textContent = 'Noch nicht. Rechne 58 durch 80 und multipliziere anschließend mit 100.';
+      }
+    });
+
+    // Quiz
+    const solved = new WeakMap();
+    function updateScore(){
+      const total = qsa('[data-quiz]').length;
+      const score = qsa('[data-quiz]').filter(card => solved.get(card) === true).length;
+      $('#quizScore').textContent = `Punkte: ${score} / ${total}`;
+    }
+    qsa('[data-quiz]').forEach(card => {
+      qsa('.answers button', card).forEach(btn => btn.addEventListener('click', () => {
+        const ok = btn.dataset.correct === 'true';
+        const fb = $('.feedback', card);
+        fb.className = 'feedback ' + (ok ? 'ok' : 'no');
+        fb.textContent = ok ? 'Richtig. Die Begründung passt zur Station 1.' : 'Noch nicht. Lies den Merksatz oder öffne die passende Hilfe und probiere es erneut.';
+        if(ok) solved.set(card, true);
+        updateScore();
+      }));
+    });
+
+    // Exit Ticket Feedback
+    $('#exitFeedback').addEventListener('click', () => {
+      const t = $('#exitTicket').value.trim().toLowerCase();
+      const box = $('#exitResult');
+      const hasFreq = t.includes('relativ') || t.includes('häufig');
+      const hasExact = t.includes('exakt') || t.includes('genau') || t.includes('wahrscheinlichkeit');
+      if(t.length < 20){ box.className='result no'; box.textContent='Schreibe noch etwas ausführlicher: Was ist beobachtet, was ist nur geschätzt?'; }
+      else if(hasFreq && hasExact){ box.className='result ok'; box.textContent='Gute Antwort: Du trennst relative Häufigkeit und Wahrscheinlichkeit.'; }
+      else { box.className='result'; box.textContent='Solide Richtung. Ergänze noch ausdrücklich, dass 15 von 20 eine relative Häufigkeit ist und keine exakte wahre Wahrscheinlichkeit beweist.'; }
+    });
+
+    // Initialisierung
+    calcFreqTask();
+    calcFreqTool();
+    calcEvents();
+    drawSimulation(false);
+    updateScore();
+  </script>
+</body>
+</html>
